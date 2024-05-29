@@ -8,4 +8,40 @@
         {{ form_widget(city_form) }}
         {{ form_end(city_form) }}
     {% endblock %}
+    {% block session_form %}
+        {{ form_start(session_form) }}
+        {{ form_widget(session_form) }}
+        {{ form_end(session_form) }}
+    {% endblock %}
+    {% block search_stats %}
+        <p class="mt-5">Last searched City: Kaunas</p>
+        <p>Total searches: 969</p>
+        <div clasl="mt-5">
+            <h5>Top 10 searched Cities:</h5>
+            <ul>
+                <li>Kaunas (99 times)</li>
+                <li>Vilnius (88 times)</li>
+            </ul>
+        </div>
+    {% endblock %}
+    {% block weather_data %}
+        {% if weather_data %}
+            <div class="mt-5"></div>
+            <h5>{{ weather_data["name"] }}</h5>
+            <table class="table">
+                <thead class="table-dark">
+                <tr>
+                    <th scope="col">Temperature</th>
+                    <th scope="col">Humidity</th>
+                    <th scope="col">Wind Speed</th>
+                </tr>
+                </thead>
+                <tr>
+                    <td>{{ weather_data["main"]["temp"] }}</td>
+                    <td>{{ weather_data["main"]["humidity"] }}</td>
+                    <td> {{ weather_data["wind"]["speed"] }}</td>
+                </tr>
+            </table>
+        {% endif %}
+    {% endblock %}
 {% endblock %}

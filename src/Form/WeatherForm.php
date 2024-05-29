@@ -7,10 +7,11 @@ use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Validator\Constraints\Length;
 
 class WeatherForm extends AbstractType
 {
-    public function buildForm(FormBuilderInterface $builder, array $options)
+    public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
             ->add('cityName', TextType::class, [
@@ -18,6 +19,9 @@ class WeatherForm extends AbstractType
                 "label" => "City Name",
                 "attr" => [
                     "placeholder" => "Enter City Name"],
+                'constraints' => [
+                    new Length(["max" => 255, "min" => 3])
+                ],
             ])
             ->add("save", SubmitType::class, [
                 "label" => "Check Weather",
