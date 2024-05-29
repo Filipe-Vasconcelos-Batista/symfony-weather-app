@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello HeavyWeather!{% endblock %}
+
+{% block body %}
+    {% block city_form %}
+        {{ form_start(city_form) }}
+        {{ form_widget(city_form) }}
+        {{ form_end(city_form) }}
+    {% endblock %}
+{% endblock %}
