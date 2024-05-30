@@ -14,13 +14,14 @@
         {{ form_end(session_form) }}
     {% endblock %}
     {% block search_stats %}
-        <p class="mt-5">Last searched City: Kaunas</p>
-        <p>Total searches: 969</p>
-        <div clasl="mt-5">
+        <p class="mt-5">Last searched City: {{ app.request.session.get("last_searched_city", "") }}</p>
+        <p>Total searches: {{ app.request.cookies.get("search_count", 0) }}</p>
+        <div>
             <h5>Top 10 searched Cities:</h5>
             <ul>
-                <li>Kaunas (99 times)</li>
-                <li>Vilnius (88 times)</li>
+                {% for entry in history %}
+                    <li>{{ entry['city_name'] }} ({{ entry['frequency'] }} times)</li>
+                {% endfor %}
             </ul>
         </div>
     {% endblock %}
